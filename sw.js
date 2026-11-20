@@ -1,5 +1,5 @@
 // Офлайн-оболочка приложения. Видео и запросы к Яндекс Диску/серверу аккаунтов не кэшируются.
-const V = 'sva-shell-202611202112';
+const V = 'sva-shell-202611202129';
 const SHELL = ['./', 'index.html', 'vendor/pdf.min.js', 'vendor/pdf.worker.min.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(V).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('sva-shell-') && k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
